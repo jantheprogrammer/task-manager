@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-  console.log(req)
+  console.log('we are here: ', req.body)
 })
 
 router.post('/', (req, res) => {

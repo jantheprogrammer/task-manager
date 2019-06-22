@@ -1,3 +1,9 @@
 .App {
   text-align: center;
 }
+
+form {
+  display: inline-grid;
+  display: -ms-inline-grid;
+  display: -moz-inline-grid;
+}
