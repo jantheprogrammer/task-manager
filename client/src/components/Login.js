@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import request from 'superagent'
+import {user} from '../utils/api'
 
 class Login extends Component {
-  state = {fname: '', lname: ''}
+  state = {user: {}}
 
   handleChange = e => {
     const field = e.target.name
@@ -12,9 +13,23 @@ class Login extends Component {
 
   handleSubmit = e => {
     console.log(this.state)
+
     e.preventDefault()
-    // request
-    // .get()
+  }
+
+  fetchUser() {
+    request
+      .get(user.get)
+      .then(res =>
+        this.setState({
+          user: res.body,
+        })
+      )
+      .catch(err => console.error(err))
+  }
+
+  componentDidMount() {
+    this.fetchUser()
   }
 
   render() {
@@ -26,7 +41,7 @@ class Login extends Component {
           <br />
           <input
             type="text"
-            name="fname"
+            name="name"
             value={this.state.fname}
             onChange={this.handleChange}
           />
@@ -35,7 +50,7 @@ class Login extends Component {
           <br />
           <input
             type="text"
-            name="lname"
+            name="psw"
             value={this.state.lname}
             onChange={this.handleChange}
           />

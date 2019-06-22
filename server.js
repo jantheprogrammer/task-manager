@@ -2,9 +2,10 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const path = require('path')
-const db = require('./config').mongoURI
 const cors = require('cors')
 
+const db = require('./config').mongoURI
+const user = require('./routes/api/user')
 const PORT = process.env.PORT || 5000
 
 const app = express()
@@ -21,9 +22,7 @@ app.use(bodyParser.json())
 
 app.use(express.static(path.resolve(__dirname, './client/build')))
 
-app.get('/api/user', function(req, res) {
-  res.json({fname: 'Jan', lname: 'Krejca'})
-})
+app.use('/api/user', user)
 
 // All remaining requests return the React app, so it can handle routing.
 app.get('*', function(req, res) {
