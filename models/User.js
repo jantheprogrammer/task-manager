@@ -10,6 +10,7 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  todos: [],
 })
 
 module.exports = mongoose.model('User', UserSchema)
