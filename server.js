@@ -5,7 +5,7 @@ const path = require('path')
 const cors = require('cors')
 
 const db = require('./config').mongoURI
-const user = require('./routes/api/user')
+const task = require('./routes/api/task')
 const PORT = process.env.PORT || 8000
 
 const app = express()
@@ -22,7 +22,7 @@ app.use(bodyParser.json())
 
 app.use(express.static(path.resolve(__dirname, './client/build')))
 
-app.use('/api/user', user)
+app.use('/api/task', task)
 
 // All remaining requests return the React app, so it can handle routing.
 app.get('*', function (req, res) {
