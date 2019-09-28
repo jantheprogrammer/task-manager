@@ -5,7 +5,7 @@ const User = require('../../models/User')
 
 router.get('/', (req, res) => {
   User.find()
-    .sort({name: 1})
+    .sort({ name: 1 })
     .then(user => res.json(user))
     .catch(err => res.json(err))
 })
@@ -17,8 +17,7 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-  console.log('we are here: ', req.body)
-  User.findOne({name: req.body.name, psw: req.body.psw})
+  User.findOne({ name: req.body.name, psw: req.body.psw })
     .then(user => verifyUser(user, res))
     .catch(err => res.json(err))
 })
@@ -33,7 +32,7 @@ function verifyUser(user, res) {
       },
     })
   }
-  return res.json(user._id)
+  return res.json(user)
 }
 
 router.post('/', (req, res) => {

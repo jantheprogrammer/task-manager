@@ -29,21 +29,6 @@ class Login extends Component {
       .catch(err => console.error(err))
   }
 
-  fetchUser() {
-    request
-      .get(user.get)
-      .then(res =>
-        this.setState({
-          user: res.body,
-        })
-      )
-      .catch(err => console.error(err))
-  }
-
-  componentDidMount() {
-    this.fetchUser()
-  }
-
   render() {
     return (
       <div>
