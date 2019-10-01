@@ -1,14 +1,14 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import request from 'superagent'
-import {user} from '../utils/api'
+import { user } from '../utils/api'
 
 class Login extends Component {
-  state = {user: {}}
+  state = { user: {} }
 
   handleChange = e => {
     const field = e.target.name
 
-    this.setState({[field]: e.target.value})
+    this.setState({ [field]: e.target.value })
   }
 
   createData() {

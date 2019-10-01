@@ -1,7 +1,12 @@
-const url = 'https://make-todo.herokuapp.com/api/'
+const url = 'https://manage-task.herokuapp.com/api/'
 
-export const user = {
-  get: url + 'user',
-  post: url + 'user',
-  login: url + 'user/login',
+export const user = (id) => {
+  const task = 'task'
+  return {
+    get: url + task,
+    post: url + task,
+    put: url + task + '/' + id,
+    delete: url + task + '/' + id
+  }
 }
+

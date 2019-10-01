@@ -1,18 +1,19 @@
 import React from 'react'
 import './App.css'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
-import Login from './components/Login'
-import ToDoLayout from './components/ToDoLayout'
-import PrivateRoute from './utils/PrivateRoute'
+import Layout from './components/Layout'
+import Tasks from './components/Tasks'
+import Button from './components/Button'
+import Title from './components/Title'
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Route path="/login" exact component={Login} />
-        <PrivateRoute path="/" exact component={ToDoLayout} />
-      </div>
-    </Router>
+    <div className="App">
+      <Layout>
+        <Title />
+        <Tasks />
+        <Button />
+      </Layout>
+    </div>
   )
 }
 
