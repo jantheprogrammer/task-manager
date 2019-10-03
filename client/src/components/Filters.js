@@ -1,17 +1,30 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react'
 
 class Filters extends Component {
-	state = {}
-	render() {
-		return (
-			<div className='filters'>
-				<div className='filter red'></div>
-				<div className='filter orange'></div>
-				<div className='filter yellow'></div>
-				<div className='filter green'></div>
-			</div>
-		);
-	}
+  state = {}
+  render() {
+    const {handleFilter, filter} = this.props
+    return (
+      <div className="filters">
+        <div
+          onClick={() => handleFilter(1)}
+          className={`filter red ${filter === 1 && 'filter-selected'}`}
+        ></div>
+        <div
+          onClick={() => handleFilter(2)}
+          className={`filter orange ${filter === 2 && 'filter-selected'}`}
+        ></div>
+        <div
+          onClick={() => handleFilter(3)}
+          className={`filter yellow ${filter === 3 && 'filter-selected'}`}
+        ></div>
+        <div
+          onClick={() => handleFilter('done')}
+          className={`filter green ${filter === 4 && 'filter-selected'}`}
+        ></div>
+      </div>
+    )
+  }
 }
 
-export default Filters;
+export default Filters

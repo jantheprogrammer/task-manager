@@ -29,13 +29,14 @@
   height: 70px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  border-left: 1px solid  rgb(50, 50, 50);
-  border-top: 1px solid  rgb(50, 50, 50);
+  border-left: 1px solid rgb(50, 50, 50);
+  border-top: 1px solid rgb(50, 50, 50);
   border-bottom: 1px solid rgb(50, 50, 50);
   cursor: pointer;
 }
 
-.filter:hover, .filter-selected {
+.filter:hover,
+.filter-selected {
   position: relative;
   width: 30px;
   left: -15px;
@@ -49,7 +50,7 @@
   background-color: rgb(255, 208, 120);
 }
 
-.yellow  {
+.yellow {
   background-color: rgb(255, 255, 120);
 }
 
@@ -66,7 +67,8 @@
 
 .tasks {
   overflow: auto;
-  height: 410px;
+  height: 400px;
+  margin-bottom: 10px;
 }
 
 .task {
@@ -89,7 +91,7 @@
   min-width: 10px;
 }
 
-.task-title {
+.task-description {
   margin: 10px;
   text-align: left;
   font-size: 16px;
@@ -115,4 +117,122 @@
   height: 40px;
   outline: none;
   cursor: pointer;
+}
+
+.task-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.task-modal {
+  position: absolute;
+  width: 500px;
+  height: auto;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid rgb(65, 65, 65);
+  -webkit-box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.75);
+}
+
+.task-modal-header {
+  height: 50px;
+  line-height: 50px;
+  /* border-bottom: 5px solid rgb(255, 120, 120); */
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.task-modal-header button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  background-color: transparent;
+  font-size: 20px;
+  margin: 10px;
+}
+
+.task-modal .form {
+  margin-bottom: 60px;
+}
+
+.form-field {
+  margin: 10px;
+}
+
+.form-field .label {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  display: flex;
+  width: 100%;
+}
+
+.form-group .form-field {
+  width: 50%;
+}
+
+.field {
+  display: flex;
+  min-height: 35px;
+}
+
+.field textarea,
+.field select,
+.field input {
+  width: 100%;
+}
+
+textarea,
+select,
+input {
+  background-color: rgb(250, 250, 250);
+  border: 1px solid rgb(65, 65, 65);
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+select,
+input[type='date'] {
+  max-height: 35px;
+}
+
+.task-modal-footer {
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  /* border-top: 1px solid rgb(65, 65, 65); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-modal-footer button {
+  font-size: 16px;
+  min-width: 70px;
+  min-height: 35px;
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px solid rgb(65, 65, 65);
+  margin: 0 10px;
 }

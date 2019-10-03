@@ -1,14 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react'
 
 class Title extends Component {
-	state = {}
-	render() {
-		return (
-			<div className='title'>
-				Title
-		  </div>
-		);
-	}
+  state = {}
+  render() {
+    return <div className="title">Task manager</div>
+  }
 }
 
-export default Title;
+export default Title
