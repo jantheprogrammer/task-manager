@@ -1,7 +1,7 @@
 {
-  "name": "to-do",
+  "name": "task-management-heroku",
   "version": "1.0.0",
-  "description": "ToDo list on heroku",
+  "description": "Task management on heroku",
   "main": "server.js",
   "engines": {
     "node": "10.x"

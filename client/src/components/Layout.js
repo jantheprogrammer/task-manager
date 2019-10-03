@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
+import request from 'superagent'
 
+import {task} from '../utils/api'
 import Filters from './Filters'
 import Tasks from './Tasks'
 import Button from './Button'
@@ -66,7 +68,7 @@ class Layout extends Component {
     } else {
       filter = priority
     }
-    console.log(filter)
+
     this.setState({
       filter: filter,
     })
@@ -76,6 +78,13 @@ class Layout extends Component {
     console.log(data)
     // here do POST
 
+    // request
+    //   .post(task.post)
+    //   .send(data)
+    //   .then(res => {
+    //     console.log(res)
+
+    // decide on length of response
     let newData = this.state.data
     newData.push(data)
 
@@ -84,6 +93,39 @@ class Layout extends Component {
     })
 
     this.toggleModal()
+
+    // })
+    // .catch(err => console.error(err))
+  }
+
+  handleDelete = id => {
+    console.log(id)
+    // request
+    //   .post(task.post)
+    //   .query({id:id})
+    //   .send(data)
+    //   .then(res => {
+    //     console.log(res)
+    // })
+    // .catch(err => console.error(err))
+  }
+
+  fetchTasks() {
+    // request
+    //   .get(task.get)
+    //   .then(res => {
+    //     console.log(res)
+    // decide on length of response
+    // this.setState({
+    //   data: res.body,
+    // })
+    // this.toggleModal()
+    // })
+    // .catch(err => console.error(err))
+  }
+
+  componentDidMount() {
+    this.fetchTasks()
   }
 
   render() {
@@ -99,6 +141,7 @@ class Layout extends Component {
           <TaskModal
             data={active_task}
             handleSubmit={this.handleSubmit}
+            handleDelete={this.handleDelete}
             toggleModal={this.toggleModal}
           />
         )}
@@ -108,3 +151,5 @@ class Layout extends Component {
 }
 
 export default Layout
+
+// TODO: animation in transitions

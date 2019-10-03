@@ -1,6 +1,4 @@
-import React, {Component} from 'react'
-import request from 'superagent'
-import {task} from '../utils/api'
+import React, {Component, Fragment} from 'react'
 
 class TaskModal extends Component {
   state = {}
@@ -23,7 +21,8 @@ class TaskModal extends Component {
   }
 
   render() {
-    const {toggleModal, handleSubmit, data} = this.props
+    const {toggleModal, handleSubmit, handleDelete, data} = this.props
+    console.log(data)
     return (
       <div className="task-modal-container">
         <div className="task-modal">
@@ -34,10 +33,10 @@ class TaskModal extends Component {
 
           <div className="form">
             <div className="form-field">
-              <div className="label">Name</div>
+              <div className="label">Task</div>
               <div className="field">
                 <textarea
-                  value={data ? data.task : undefined}
+                  defaultValue={data ? data.task : ''}
                   name="task"
                   rows="4"
                   onChange={e => this.handleChange(e)}
@@ -51,7 +50,7 @@ class TaskModal extends Component {
                 <div className="field">
                   {/* TODO: make own pattern and make dynamic min date*/}
                   <input
-                    value={data ? data.deadline : undefined}
+                    defaultValue={data ? data.deadline : ''}
                     min="2019-10-02"
                     type="date"
                     name="deadline"
@@ -59,11 +58,12 @@ class TaskModal extends Component {
                   />
                 </div>
               </div>
+
               <div className="form-field">
                 <div className="label">Priority</div>
                 <div className="field">
                   <select
-                    value={data ? data.priority : undefined}
+                    defaultValue={data ? data.priority : 2}
                     name="priority"
                     onChange={e => this.handleChange(e)}
                   >
@@ -75,11 +75,32 @@ class TaskModal extends Component {
               </div>
             </div>
 
+            <div className="form-field">
+              <div className="label">Done</div>
+              <div className="field">
+                <input
+                  defaultChecked={data ? data.done : false}
+                  type="checkbox"
+                  name="done"
+                  // onChange={e => this.handleChange(e)}
+                />
+              </div>
+            </div>
+
             <div className="task-modal-footer">
-              <button onClick={e => handleSubmit(this.createData())}>
-                Create
-              </button>
-              <button onClick={() => toggleModal()}>Close</button>
+              {data ? (
+                <Fragment>
+                  <button onClick={e => console.log('Updated')}>Update</button>
+                  <button onClick={() => handleDelete(data._id)}>Delete</button>
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <button onClick={e => handleSubmit(this.createData())}>
+                    Create
+                  </button>
+                  <button onClick={() => toggleModal()}>Close</button>
+                </Fragment>
+              )}
             </div>
           </div>
         </div>

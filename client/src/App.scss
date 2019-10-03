@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+button {
+  cursor: pointer;
+}
+
 .layout {
   margin-top: 10vh;
   padding: 10px;
@@ -33,13 +37,13 @@
   border-top: 1px solid rgb(50, 50, 50);
   border-bottom: 1px solid rgb(50, 50, 50);
   cursor: pointer;
-}
 
-.filter:hover,
-.filter-selected {
-  position: relative;
-  width: 30px;
-  left: -15px;
+  &:hover,
+  .filter-selected {
+    position: relative;
+    width: 30px;
+    left: -15px;
+  }
 }
 
 .red {
@@ -107,16 +111,15 @@
 
 .new-button {
   margin-bottom: 10px;
-}
 
-.new-button button {
-  font-size: 30px;
-  border: 1px solid rgb(65, 65, 65);
-  border-radius: 5px;
-  width: 100%;
-  height: 40px;
-  outline: none;
-  cursor: pointer;
+  button {
+    font-size: 30px;
+    border: 1px solid rgb(65, 65, 65);
+    border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    outline: none;
+  }
 }
 
 .task-modal-container {
@@ -141,64 +144,64 @@
   -webkit-box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.75);
+
+  .form {
+    margin-bottom: 60px;
+  }
 }
 
 .task-modal-header {
   height: 50px;
   line-height: 50px;
-  /* border-bottom: 5px solid rgb(255, 120, 120); */
   margin-bottom: 10px;
   font-size: 20px;
-}
 
-button {
-  cursor: pointer;
-}
-
-.task-modal-header button {
-  width: 30px;
-  height: 30px;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  position: absolute;
-  right: 0;
-  background-color: transparent;
-  font-size: 20px;
-  margin: 10px;
-}
-
-.task-modal .form {
-  margin-bottom: 60px;
+  button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    outline: none;
+    position: absolute;
+    right: 0;
+    background-color: transparent;
+    font-size: 20px;
+    margin: 10px;
+  }
 }
 
 .form-field {
   margin: 10px;
-}
 
-.form-field .label {
-  text-align: left;
-  margin-bottom: 10px;
+  .label {
+    text-align: left;
+    margin-bottom: 5px;
+  }
 }
 
 .form-group {
   display: flex;
   width: 100%;
-}
 
-.form-group .form-field {
-  width: 50%;
+  .form-field {
+    width: 50%;
+  }
 }
 
 .field {
+  position: relative;
   display: flex;
   min-height: 35px;
-}
 
-.field textarea,
-.field select,
-.field input {
-  width: 100%;
+  textarea,
+  select,
+  input {
+    width: 100%;
+  }
+
+  input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 textarea,
@@ -216,23 +219,50 @@ input[type='date'] {
   max-height: 35px;
 }
 
+/* create a new arrow */
+input[type='date'] {
+  &:after {
+    content: '\25BC';
+    color: rgb(65, 65, 65);
+    padding: 0 5px;
+  }
+
+  &:hover:after {
+    color: rgb(35, 35, 35);
+  }
+
+  /* make the native arrow invisible and stretch it */
+  &::-webkit-calendar-picker-indicator {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+
+  /* removing of up and down arrows */
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+  }
+}
+
 .task-modal-footer {
   width: 100%;
   height: 60px;
   position: fixed;
   bottom: 0;
-  /* border-top: 1px solid rgb(65, 65, 65); */
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.task-modal-footer button {
-  font-size: 16px;
-  min-width: 70px;
-  min-height: 35px;
-  border-radius: 5px;
-  padding: 5px;
-  border: 1px solid rgb(65, 65, 65);
-  margin: 0 10px;
+  button {
+    font-size: 16px;
+    min-width: 70px;
+    min-height: 35px;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid rgb(65, 65, 65);
+    margin: 0 10px;
+    background-color: white;
+  }
 }
