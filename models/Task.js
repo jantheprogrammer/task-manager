@@ -12,12 +12,12 @@ const TaskSchema = new Schema({
   },
   priority: {
     type: Number,
-    required: true
+    required: true,
   },
   deadline: {
-    type: Number,
-    required: true
-  }
+    type: Date,
+    required: true,
+  },
 })
 
 module.exports = mongoose.model('Task', TaskSchema)

@@ -15,14 +15,6 @@ class Layout extends Component {
     modal_visible: false,
     data: [
       {
-        _id: '5d8efd3cb951604ecefe2a32',
-        task: 'Find a job',
-        done: false,
-        priority: 3,
-        __v: 0,
-        deadline: '2019-05-05',
-      },
-      {
         _id: '5d8efd4e60fbcd4ef72e814b',
         task: 'Make money',
         done: false,
@@ -90,30 +82,28 @@ class Layout extends Component {
             // this.setState({
             //   data: newData,
             // })
-
-            this.toggleModal()
           })
           .catch(err => {
-            this.toggleModal()
-
-            console.error('PUT: ', err)
+            console.error('PUT ERROR: ', err)
           })
       : request
           .post(task().post)
           .send(data)
           .then(res => {
             console.log(res)
+            this.fetchTasks()
+            // let newData = this.state.data
+            // newData.push(data)
 
-            let newData = this.state.data
-            newData.push(data)
-
-            this.setState({
-              data: newData,
-            })
+            // this.setState({
+            //   data: newData,
+            // })
           })
           .catch(err => {
-            console.error('POST: ', err)
+            console.error('POST ERROR: ', err)
           })
+
+    this.toggleModal()
   }
 
   handleDelete = id => {
@@ -122,12 +112,11 @@ class Layout extends Component {
       .post(task().delete)
       .query({id: id})
       .then(res => {
-        console.log(res)
         this.toggleModal()
       })
       .catch(err => {
         this.toggleModal()
-        console.error('DELETE: ', err)
+        console.error('DELETE ERROR: ', err)
       })
   }
 
@@ -135,6 +124,7 @@ class Layout extends Component {
     request
       .get(task().get)
       .then(res => {
+        console.log('RES IN FETCH: ', res)
         this.setState({
           data: res.body,
         })
