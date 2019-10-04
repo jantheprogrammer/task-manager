@@ -109,10 +109,10 @@ class Layout extends Component {
   handleDelete = id => {
     console.log(id)
     request
-      .post(task().delete)
-      .query({id: id})
+      .delete(task(id).delete)
       .then(res => {
         this.toggleModal()
+        this.fetchTasks()
       })
       .catch(err => {
         this.toggleModal()
