@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 class Task extends Component {
   state = {}
 
-  doIt(task) {
+  getLineColor(task) {
     if (!task.done) {
       switch (task.priority) {
         case 1:
@@ -28,7 +28,7 @@ class Task extends Component {
           <div className="task-description">{task.task}</div>
           <div className="task-deadline">Deadline: {task.deadline}</div>
         </div>
-        <div className={`priority ${this.doIt(task)} `}></div>
+        <div className={`priority ${this.getLineColor(task)}`}></div>
       </div>
     )
   }

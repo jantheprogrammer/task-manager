@@ -1,32 +1,84 @@
 import React, {Component, Fragment} from 'react'
 
 class TaskModal extends Component {
-  state = {}
+  constructor(props) {
+    super(props)
+    this.state = {priority: 2}
+  }
 
+  // FIX DATA
   handleChange = e => {
     const field = e.target.name
+    let value = e.target.value
 
-    this.setState({[field]: e.target.value})
+    if (e.target.type === 'checkbox') {
+      value = e.target.checked
+    }
+    if (field === 'priority') value = Number(value)
+
+    this.setState({[field]: value})
   }
 
   createData() {
-    const data = {
-      task: this.state.task,
-      deadline: this.state.deadline,
-      priority: Number(this.state.priority),
-      done: false,
-      _id: Math.random(),
+    const {task, deadline, done, priority} = this.state
+    let data = {}
+
+    if (!this.props.data) {
+      data = {
+        task: task,
+        deadline: deadline,
+        priority: Number(priority),
+        done: false,
+        _id: undefined,
+      }
+    } else {
+      data = {
+        task: task ? task : this.props.data.task,
+        deadline: deadline ? deadline : this.props.data.deadline,
+        priority: Number(priority),
+        done: done ? done : this.props.data.done,
+        _id: this.props.data._id,
+      }
     }
+    console.log('DATA: ', data)
     return data
+  }
+
+  getBorderColor(priority) {
+    const data = this.props.data
+    console.log(data, data && !data.done)
+    console.log(this.state, this.state.done === false)
+    if ((data && data.done === false) || this.state.done === false) {
+      switch (priority) {
+        case 1:
+          return 'red-border'
+        case 2:
+          return 'orange-border'
+        case 3:
+          return 'yellow-border'
+        default:
+          return 'green-border'
+      }
+    } else {
+      return 'green-border'
+    }
+  }
+
+  componentDidMount() {
+    this.setState({...this.props.data})
   }
 
   render() {
     const {toggleModal, handleSubmit, handleDelete, data} = this.props
-    console.log(data)
+    console.log('PPP: ', this.state)
     return (
       <div className="task-modal-container">
         <div className="task-modal">
-          <div className="task-modal-header">
+          <div
+            className={`task-modal-header ${this.getBorderColor(
+              this.state.priority
+            )}`}
+          >
             {data ? 'Task detail' : 'New task'}
             <button onClick={() => toggleModal()}>X</button>
           </div>
@@ -36,6 +88,8 @@ class TaskModal extends Component {
               <div className="label">Task</div>
               <div className="field">
                 <textarea
+                  required={true}
+                  placeholder="Your task!"
                   defaultValue={data ? data.task : ''}
                   name="task"
                   rows="4"
@@ -82,7 +136,8 @@ class TaskModal extends Component {
                   defaultChecked={data ? data.done : false}
                   type="checkbox"
                   name="done"
-                  // onChange={e => this.handleChange(e)}
+                  onChange={e => this.handleChange(e)}
+                  // TODO: fix change of checkbox
                 />
               </div>
             </div>
@@ -90,7 +145,9 @@ class TaskModal extends Component {
             <div className="task-modal-footer">
               {data ? (
                 <Fragment>
-                  <button onClick={e => console.log('Updated')}>Update</button>
+                  <button onClick={e => handleSubmit(this.createData())}>
+                    Save
+                  </button>
                   <button onClick={() => handleDelete(data._id)}>Delete</button>
                 </Fragment>
               ) : (

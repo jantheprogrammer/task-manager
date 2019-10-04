@@ -75,53 +75,71 @@ class Layout extends Component {
   }
 
   handleSubmit = data => {
-    console.log(data)
-    // here do POST
+    data._id
+      ? request
+          .put(task(data._id).put)
+          .send(data)
+          .then(res => {
+            console.log(res)
+            // check how long you wait
+            this.fetchTasks()
+            // TODO: add live update
+            // let newData = this.state.data
+            // newData.push(data)
 
-    // request
-    //   .post(task.post)
-    //   .send(data)
-    //   .then(res => {
-    //     console.log(res)
+            // this.setState({
+            //   data: newData,
+            // })
 
-    // decide on length of response
-    let newData = this.state.data
-    newData.push(data)
+            this.toggleModal()
+          })
+          .catch(err => {
+            this.toggleModal()
 
-    this.setState({
-      data: newData,
-    })
+            console.error('PUT: ', err)
+          })
+      : request
+          .post(task().post)
+          .send(data)
+          .then(res => {
+            console.log(res)
 
-    this.toggleModal()
+            let newData = this.state.data
+            newData.push(data)
 
-    // })
-    // .catch(err => console.error(err))
+            this.setState({
+              data: newData,
+            })
+          })
+          .catch(err => {
+            console.error('POST: ', err)
+          })
   }
 
   handleDelete = id => {
     console.log(id)
-    // request
-    //   .post(task.post)
-    //   .query({id:id})
-    //   .send(data)
-    //   .then(res => {
-    //     console.log(res)
-    // })
-    // .catch(err => console.error(err))
+    request
+      .post(task().delete)
+      .query({id: id})
+      .then(res => {
+        console.log(res)
+        this.toggleModal()
+      })
+      .catch(err => {
+        this.toggleModal()
+        console.error('DELETE: ', err)
+      })
   }
 
   fetchTasks() {
-    // request
-    //   .get(task.get)
-    //   .then(res => {
-    //     console.log(res)
-    // decide on length of response
-    // this.setState({
-    //   data: res.body,
-    // })
-    // this.toggleModal()
-    // })
-    // .catch(err => console.error(err))
+    request
+      .get(task().get)
+      .then(res => {
+        this.setState({
+          data: res.body,
+        })
+      })
+      .catch(err => console.error(err))
   }
 
   componentDidMount() {
@@ -151,5 +169,3 @@ class Layout extends Component {
 }
 
 export default Layout
-
-// TODO: animation in transitions

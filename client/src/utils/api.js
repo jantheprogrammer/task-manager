@@ -1,4 +1,4 @@
-const url = 'https://manage-task.herokuapp.com/api/'
+const url = 'https://manage-tasks.herokuapp.com/api/'
 
 export const task = id => {
   const task = 'task'

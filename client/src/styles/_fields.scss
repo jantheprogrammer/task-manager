@@ -1,0 +1,84 @@
+.form-field {
+  margin: 10px;
+
+  .label {
+    text-align: left;
+    margin-bottom: 5px;
+  }
+}
+
+.form-group {
+  display: flex;
+  width: 100%;
+
+  .form-field {
+    width: 50%;
+  }
+}
+
+.field {
+  position: relative;
+  display: flex;
+  min-height: 35px;
+
+  textarea,
+  select,
+  input {
+    outline: none;
+    width: 100%;
+
+    &:hover,
+    &:focus {
+      box-shadow: $base-shadow;
+    }
+  }
+
+  input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+textarea,
+select,
+input {
+  background-color: rgb(250, 250, 250);
+  border: 1px solid $dark;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+select,
+input {
+  max-height: 35px;
+  cursor: pointer;
+}
+
+/*  create a new arrow */
+input[type='date'] {
+  &:after {
+    content: '\25BC';
+    color: $dark;
+    padding: 0 5px;
+  }
+
+  &:hover:after {
+    color: $darker;
+  }
+
+  /* make the native arrow invisible and stretch it */
+  &::-webkit-calendar-picker-indicator {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /* removing of up and down arrows */
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+  }
+}
