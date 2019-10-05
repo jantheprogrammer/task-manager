@@ -46,8 +46,6 @@ class TaskModal extends Component {
 
   getBorderColor(priority) {
     const data = this.props.data
-    console.log(data, data && !data.done)
-    console.log(this.state, this.state.done === false)
     if ((data && data.done === false) || this.state.done === false) {
       switch (priority) {
         case 1:
@@ -70,7 +68,6 @@ class TaskModal extends Component {
 
   render() {
     const {toggleModal, handleSubmit, handleDelete, data} = this.props
-    console.log('PPP: ', this.state)
     return (
       <div className="task-modal-container">
         <div className="task-modal">

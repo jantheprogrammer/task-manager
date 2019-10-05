@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 
 class Task extends Component {
-  state = {}
-
   getLineColor(task) {
     if (!task.done) {
       switch (task.priority) {

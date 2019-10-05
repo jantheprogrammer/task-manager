@@ -72,47 +72,32 @@ class Layout extends Component {
           .put(task(data._id).put)
           .send(data)
           .then(res => {
-            console.log(res)
-            // check how long you wait
             this.fetchTasks()
-            // TODO: add live update
-            // let newData = this.state.data
-            // newData.push(data)
-
-            // this.setState({
-            //   data: newData,
-            // })
+            this.toggleModal()
           })
           .catch(err => {
+            this.toggleModal()
             console.error('PUT ERROR: ', err)
           })
       : request
           .post(task().post)
           .send(data)
           .then(res => {
-            console.log(res)
             this.fetchTasks()
-            // let newData = this.state.data
-            // newData.push(data)
-
-            // this.setState({
-            //   data: newData,
-            // })
+            this.toggleModal()
           })
           .catch(err => {
+            this.toggleModal()
             console.error('POST ERROR: ', err)
           })
-
-    this.toggleModal()
   }
 
   handleDelete = id => {
-    console.log(id)
     request
       .delete(task(id).delete)
       .then(res => {
-        this.toggleModal()
         this.fetchTasks()
+        this.toggleModal()
       })
       .catch(err => {
         this.toggleModal()
@@ -124,9 +109,12 @@ class Layout extends Component {
     request
       .get(task().get)
       .then(res => {
-        console.log('RES IN FETCH: ', res)
+        // sorting priorities
+        let data = res.body.sort((a, b) => a.priority - b.priority)
+        // sorting done
+        data.sort((a, b) => a.done - b.done)
         this.setState({
-          data: res.body,
+          data: data,
         })
       })
       .catch(err => console.error(err))

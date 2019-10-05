@@ -9,7 +9,6 @@ class Tasks extends Component {
     const taskComponent = task => (
       <Task key={task._id} task={task} toggleModal={toggleModal} />
     )
-
     return (
       <div className="tasks">
         {filter
