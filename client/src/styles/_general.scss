@@ -1,0 +1,17 @@
+button,
+input,
+select,
+textarea,
+svg {
+  outline: none;
+}
+
+button,
+input[type='date']::-webkit-calendar-picker-indicator,
+input[type='checkbox'],
+select,
+svg,
+.task,
+.filter {
+  cursor: pointer;
+}

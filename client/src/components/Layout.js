@@ -4,8 +4,9 @@ import request from 'superagent'
 import {task} from '../utils/api'
 import Filters from './Filters'
 import Tasks from './Tasks'
-import Button from './Button'
+import NewButton from './NewButton'
 import Title from './Title'
+import Loading from './Loading'
 import TaskModal from './TaskModal'
 
 class Layout extends Component {
@@ -13,37 +14,7 @@ class Layout extends Component {
     active_task: undefined,
     filter: undefined,
     modal_visible: false,
-    data: [
-      {
-        _id: '5d8efd4e60fbcd4ef72e814b',
-        task: 'Make money',
-        done: false,
-        priority: 3,
-        __v: 0,
-        deadline: '2019-09-11',
-      },
-      {
-        _id: '8ef6481c9d44000040905e',
-        task: 'Make a breakfast',
-        done: false,
-        priority: 2,
-        deadline: '2019-10-01',
-      },
-      {
-        _id: '5d8ef6481c9d440040905e',
-        task: 'DO IT',
-        done: true,
-        priority: 2,
-        deadline: '2019-10-10',
-      },
-      {
-        _id: '5d8ef6481d44000040905e',
-        task: 'Eh eh ',
-        done: false,
-        priority: 1,
-        deadline: '2019-10-19',
-      },
-    ],
+    data: undefined,
   }
 
   toggleModal = active_task => {
@@ -66,7 +37,8 @@ class Layout extends Component {
     })
   }
 
-  handleSubmit = data => {
+  handleSubmit = (e, data) => {
+    e.preventDefault()
     data._id
       ? request
           .put(task(data._id).put)
@@ -92,7 +64,8 @@ class Layout extends Component {
           })
   }
 
-  handleDelete = id => {
+  handleDelete = (e, id) => {
+    e.preventDefault()
     request
       .delete(task(id).delete)
       .then(res => {
@@ -130,8 +103,12 @@ class Layout extends Component {
       <div className="layout">
         <Filters handleFilter={this.handleFilter} filter={filter} />
         <Title />
-        <Tasks filter={filter} data={data} toggleModal={this.toggleModal} />
-        <Button toggleModal={this.toggleModal} />
+        {data ? (
+          <Tasks filter={filter} data={data} toggleModal={this.toggleModal} />
+        ) : (
+          <Loading />
+        )}
+        <NewButton toggleModal={this.toggleModal} />
 
         {modal_visible && (
           <TaskModal

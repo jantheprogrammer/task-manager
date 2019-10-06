@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-class Task extends Component {
-  getLineColor(task) {
+const Task = ({task, toggleModal}) => {
+  const getLineColor = task => {
     if (!task.done) {
       switch (task.priority) {
         case 1:
@@ -18,18 +18,17 @@ class Task extends Component {
     }
   }
 
-  render() {
-    const {task} = this.props
-    return (
-      <div className="task" onClick={e => this.props.toggleModal(task)}>
-        <div className="task-container">
-          <div className="task-description">{task.task}</div>
-          <div className="task-deadline">Deadline: {task.deadline}</div>
+  return (
+    <div className="task" onClick={e => toggleModal(task)}>
+      <div className="task-container">
+        <div className="task-description">{task.task}</div>
+        <div className="task-deadline">
+          {task.done ? 'Done' : `Deadline: ${task.deadline}`}
         </div>
-        <div className={`priority ${this.getLineColor(task)}`}></div>
       </div>
-    )
-  }
+      <div className={`priority ${getLineColor(task)}`}></div>
+    </div>
+  )
 }
 
 export default Task
