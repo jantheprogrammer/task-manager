@@ -17,7 +17,6 @@ class TaskModal extends Component {
     let value = e.target.value
 
     if (e.target.type === 'checkbox') {
-      console.log(e.target.checked)
       value = e.target.checked
     }
     if (field === 'priority') value = Number(value)

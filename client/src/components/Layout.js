@@ -6,8 +6,8 @@ import Filters from './Filters'
 import Tasks from './Tasks'
 import NewButton from './NewButton'
 import Title from './Title'
-import Loading from './Loading'
 import TaskModal from './TaskModal'
+import {NoTasks, Loading} from './EmptyTasks'
 
 class Layout extends Component {
   state = {
@@ -102,9 +102,15 @@ class Layout extends Component {
     return (
       <div className="layout">
         <Filters handleFilter={this.handleFilter} filter={filter} />
+
         <Title />
+
         {data ? (
-          <Tasks filter={filter} data={data} toggleModal={this.toggleModal} />
+          data.length ? (
+            <Tasks filter={filter} data={data} toggleModal={this.toggleModal} />
+          ) : (
+            <NoTasks />
+          )
         ) : (
           <Loading />
         )}
