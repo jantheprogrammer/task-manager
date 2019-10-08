@@ -1,3 +1,4 @@
 # manage-tasks
-Tasks management SPA
+Tasks management SPA 
+
 Deployed on https://manage-tasks.herokuapp.com/
