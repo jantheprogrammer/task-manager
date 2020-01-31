@@ -17,7 +17,7 @@ const Filters = ({handleFilter, filter}) => {
       ></div>
       <div
         onClick={() => handleFilter('done')}
-        className={`filter green ${filter === 4 ? 'filter-selected' : ''}`}
+        className={`filter green ${filter === 'done' ? 'filter-selected' : ''}`}
       ></div>
     </div>
   )

@@ -43,7 +43,7 @@ select,
 input {
   background-color: rgb(250, 250, 250);
   border: 1px solid $dark;
-  border-radius: 5px;
+  border-radius: $border-radius;
   padding: 5px;
   font-size: 14px;
 }

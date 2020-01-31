@@ -31,7 +31,6 @@ class Layout extends Component {
     } else {
       filter = priority
     }
-
     this.setState({
       filter: filter,
     })
