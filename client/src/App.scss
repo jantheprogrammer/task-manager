@@ -249,3 +249,21 @@
     }
   }
 }
+
+@media (max-width: $breakpoint-tablet) {
+  .layout {
+    margin: 0;
+    width: 100%;
+    height: fit-content;
+    border-radius: 0;
+    border: 0;
+  }
+
+  .tasks {
+    height: auto;
+  }
+
+  .task-modal {
+    width: 95%;
+  }
+}
