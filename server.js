@@ -17,7 +17,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err))
+  .catch((err) => console.log(err))
 
 //bodyParser middlewear
 app.use(cors())
@@ -29,11 +29,11 @@ app.use(express.static(path.resolve(__dirname, './client/build')))
 app.use('/api/task', task)
 
 // All remaining requests return the React app, so it can handle routing.
-app.get('*', function(req, res) {
+app.get('*', function (req, res) {
   res.sendFile(path.resolve(__dirname, './client/build', 'index.html'))
 })
 
-app.listen(PORT, function() {
-  console.error(`Server is listening on port ${PORT}`)
+app.listen(PORT, function () {
+  console.log(`Server is listening on port ${PORT}`)
 })
 // }
