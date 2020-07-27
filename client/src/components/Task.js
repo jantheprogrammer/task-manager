@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Task = ({task, toggleModal}) => {
-  const getLineColor = task => {
+  const getLineColor = (task) => {
     if (!task.done) {
       switch (task.priority) {
         case 1:
@@ -18,11 +18,20 @@ const Task = ({task, toggleModal}) => {
     }
   }
 
+  const isOverdue = (task) => {
+    if (!task.done) {
+      const now = new Date(Date.now()).toISOString().slice(0, 10)
+      if (task.deadline < now) {
+        return 'overdue'
+      }
+    }
+  }
+
   return (
-    <div className="task" onClick={e => toggleModal(task)}>
+    <div className="task" onClick={(e) => toggleModal(task)}>
       <div className="task-container">
         <div className="task-description">{task.task}</div>
-        <div className="task-deadline">
+        <div className={`task-deadline ${isOverdue(task)}`}>
           {task.done ? 'Done' : `Deadline: ${task.deadline}`}
         </div>
       </div>

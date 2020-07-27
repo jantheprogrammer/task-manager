@@ -11,3 +11,10 @@ function App() {
 }
 
 export default App
+
+/* TODO
+  change the filters design
+  add filters to tablet/phone view
+  make an error modal
+  implement typecript
+*/
